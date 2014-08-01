@@ -1,0 +1,86 @@
+{ "name": "Junos",
+  "scopeName": "text.junos",
+  "fileTypes": [""],
+  "patterns": [
+  	{ "comment": "Block Comment or annotation",
+      "name": "comment.block.junos",
+      "begin": "/\\*", 
+      "end": "\\*/", 
+      "captures": {
+        "0": { "name": "comment.block.junos" }
+      }
+    },
+   	{ "comment": "Line comment (anything following a hashtag (#)",
+      "name": "comment.line.number-sign.junos",
+      "match": "(#).*$\n?", 
+      "captures": {
+        "1": { "name": "punctuation.definition.comment.junos" }
+      }
+    },
+    { 
+      "match": "((set )|(^\\s)|^)(system|vlans|forwarding-options|routing-options|bridge-domains)(?= )",
+   		"captures": {
+   			"4": { "name": "support.function.junos" }
+   		}
+    },
+    { 
+      "match": "((set )|(^\\s)|^)(interfaces|groups|snmp|poe|routing-instances|ethernet-switching-options|security)(?= )",
+   		"captures": {
+   			"4": { "name": "keyword.control.junos" }
+   		}
+    },
+    { 
+      "match": "((set )|(^\\s)|^)(policy-options|protocols|chassis|firewall|applications|multi-chassis|redundant-power-system|services|virtual-chassis|event-options|class-of-service|access|access-profile|accounting-options|diameter|dynamic-profiles|fabric|jsrc|jsrc-partition|logical-systems|multicast-snooping-options|switch-options|wlan|smtp|schedulers)(?= )",
+   		"captures": {
+   			"4": { "name": "storage.type.function.inline.junos" }
+   		}
+    },
+    { "comment": "Interface names",
+      "name": "entity.name.function.junos",
+      "match": "((((ge-|et-|so-|fe-|xe-)(\\d+\/\\d+\/\\d+)\\b)|st\\d+|lo\\d+|ae\\d+|irb)(\\.\\d+)?\\b)|(\\b(vlan\\.\\d+)\\b)"
+    },
+    { "comment": "IP addresses, with or without a mask",
+      "name": "constant.numeric.integer.long.octal.junos",
+      "match": "\\b((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))([/]\\d+)?\\b"
+    },
+	  { "comment": "User defined arbitrary names (such as filters, policy names, prefix-lists, etc)",
+	    "match": "(?:\\s(?:logical-systems|routing-instances|rule|rule-set|pool|class|from-zone|to-zone|apply-groups|file|host-name|address|domain-name|community|trap-group|policy|policy-statement|filter|prefix-list|proposal|security-zone|term|application|application-set|vlans|gateway)[ ])((\\w|[-_:\\.])+)([ ;]|$)",
+	    "captures": {
+       	"3": { "name": "variable.language.junos" }
+      }
+    },
+    { "comment": "Double quoted strings",
+      "name": "string.quoted.double.junos",
+      "begin": "\"", 
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.string.begin.junos" }
+      }, 
+      "end": "\"", 
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.string.end.junos" }
+      },
+      "patterns": [
+        { "name": "constant.character.escape.junos",
+          "match": "\\\\."
+        }
+      ]
+    }, 
+    { "comment": "Single quoted strings",
+      "name": "string.quoted.single.junos",
+      "begin": "'",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.string.begin.junos" }
+      },
+      "end": "'",
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.string.end.junos" }
+      },
+      "patterns": [
+        { "name": "constant.character.escape.junos",
+          "match": "\\\\."
+        }
+      ]
+    }
+  ],
+  "uuid": "a24afbf3-0a1e-4795-87c3-7bb7e582bffe"
+}
