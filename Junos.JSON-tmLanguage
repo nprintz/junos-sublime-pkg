@@ -6,7 +6,7 @@
       "comment": "Block Comment or annotation",
       "name": "comment.block.junos",
       "begin": "/\\*", 
-      "end": "\\*/", 
+      "end": "(\\*/|\n)", 
       "captures": {
         "0": { "name": "comment.block.junos" }
       }
@@ -64,6 +64,11 @@
       "comment": "IP addresses, with or without a mask",
       "name": "constant.numeric.integer.long.octal.junos",
       "match": "\\b((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))([/]\\d+)?\\b"
+    },
+    {
+      "comment": "IPv6 Addresses. This will not fully validate the structure of the IP, so some invalid IPv6 addresses might be false positives. IPv6 addresses themselves should be validated by running commands against a device.",
+      "name": "constant.numeric.integer.long.octal.junos",
+      "match": "(\\b|^)((?=.*::)(?!.*::.+::)(::)?([\\dA-Fa-f]{1,4}:(:|\\b)|){5}|([\\dA-Fa-f]{1,4}:){6})((([\\dA-Fa-f]{1,4}((?!\\4)::|:\\b|[/]\\d+|$))|(?!\\3\\4)){2}|(((2[0-4]|1\\d|[1-9])?\\d|25[0-5])\\.?\\b){4})([/]\\d+)?"
     },
     {
       "comment": "Unit numbers, port numbers, etc",
