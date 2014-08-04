@@ -2,7 +2,8 @@
   "scopeName": "text.junos",
   "fileTypes": [""],
   "patterns": [
-  	{ "comment": "Block Comment or annotation",
+    { 
+      "comment": "Block Comment or annotation",
       "name": "comment.block.junos",
       "begin": "/\\*", 
       "end": "\\*/", 
@@ -10,7 +11,8 @@
         "0": { "name": "comment.block.junos" }
       }
     },
-   	{ "comment": "Line comment (anything following a hashtag (#)",
+    { 
+      "comment": "Line comment (anything following a hashtag (#)",
       "name": "comment.line.number-sign.junos",
       "match": "(#).*$\n?", 
       "captures": {
@@ -18,38 +20,45 @@
       }
     },
     { 
-      "match": "((set )|(^\\s)|^)(system|vlans|forwarding-options|routing-options|bridge-domains)(?= )",
-   		"captures": {
-   			"4": { "name": "support.function.junos" }
-   		}
+      "comment": "Major sections of the configuration",
+      "match": "((set )|(^\\s)|^|(request ))(system|vlans|forwarding-options|routing-options|bridge-domains|interfaces|groups|snmp|poe|routing-instances|ethernet-switching-options|security)(?= )",
+      "captures": {
+        "5": { "name": "support.function.junos" }
+      }
     },
     { 
-      "match": "((set )|(^\\s)|^)(interfaces|groups|snmp|poe|routing-instances|ethernet-switching-options|security)(?= )",
-   		"captures": {
-   			"4": { "name": "keyword.control.junos" }
-   		}
+      "comment": "minor sections of the config.",
+      "match": "((set )|(^\\s)|^|(request ))(policy-options|protocols|chassis|firewall|applications|multi-chassis|redundant-power-system|services|virtual-chassis|event-options|class-of-service|access|access-profile|accounting-options|diameter|dynamic-profiles|fabric|jsrc|jsrc-partition|logical-systems|multicast-snooping-options|switch-options|wlan|smtp|schedulers)(?= )",
+      "captures": {
+        "5": { "name": "keyword.control.junos" }
+      }
     },
     { 
-      "match": "((set )|(^\\s)|^)(policy-options|protocols|chassis|firewall|applications|multi-chassis|redundant-power-system|services|virtual-chassis|event-options|class-of-service|access|access-profile|accounting-options|diameter|dynamic-profiles|fabric|jsrc|jsrc-partition|logical-systems|multicast-snooping-options|switch-options|wlan|smtp|schedulers)(?= )",
-   		"captures": {
-   			"4": { "name": "storage.type.function.inline.junos" }
-   		}
-    },
-    { "comment": "Interface names",
+      "comment": "Interface names",
       "name": "entity.name.function.junos",
-      "match": "((((ge-|et-|so-|fe-|xe-)(\\d+\/\\d+\/\\d+)\\b)|st\\d+|lo\\d+|ae\\d+|irb)(\\.\\d+)?\\b)|(\\b(vlan\\.\\d+)\\b)"
+      "match": "\\s(((((ge-|et-|so-|fe-|xe-)(\\d+\/\\d+\/\\d+))|st\\d+|lo\\d+|ae\\d+|irb)(\\.\\d+)?)|((vlan\\.\\d+)))\\b"
     },
-    { "comment": "IP addresses, with or without a mask",
+    { 
+      "comment": "IP addresses, with or without a mask",
       "name": "constant.numeric.integer.long.octal.junos",
       "match": "\\b((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))([/]\\d+)?\\b"
     },
-	  { "comment": "User defined arbitrary names (such as filters, policy names, prefix-lists, etc)",
-	    "match": "(?:\\s(?:logical-systems|routing-instances|rule|rule-set|pool|class|from-zone|to-zone|apply-groups|file|host-name|address|domain-name|community|trap-group|policy|policy-statement|filter|prefix-list|proposal|security-zone|term|application|application-set|vlans|gateway)[ ])((\\w|[-_:\\.])+)([ ;]|$)",
-	    "captures": {
-       	"3": { "name": "variable.language.junos" }
+    { 
+      "comment": "Unit numbers, port numbers, etc",
+      "match": "(?:\\s(?:unit|destination-port|source-port)[ ])((\\d|[-])+)([;]|$|\\b)",
+      "captures": {
+        "1": { "name": "constant.numeric.integer.long.octal.junos" }
       }
     },
-    { "comment": "Double quoted strings",
+    { 
+      "comment": "User defined arbitrary names (such as filters, policy names, prefix-lists, etc)",
+      "match": "(?:\\s(?:logical-systems|source-prefix-list|count|destination-prefix-list|import|export|instance|next-hop-group|routing-instances|rule|rule-set|pool|class|unit|port-mirror-instance|from-zone|to-zone|apply-groups|file|host-name|domain-name|community|trap-group|policy|policy-statement|filter|prefix-list|proposal|security-zone|term|application|application-set|vlans|gateway|user|policer)[ ])((\\w|[-_<>:\\./])+)([;]|$|\\b)",
+      "captures": {
+        "1": { "name": "variable.language.junos" }
+      }
+    },
+    { 
+      "comment": "Double quoted strings",
       "name": "string.quoted.double.junos",
       "begin": "\"", 
       "beginCaptures": {
@@ -65,7 +74,8 @@
         }
       ]
     }, 
-    { "comment": "Single quoted strings",
+    { 
+      "comment": "Single quoted strings",
       "name": "string.quoted.single.junos",
       "begin": "'",
       "beginCaptures": {
@@ -80,6 +90,13 @@
           "match": "\\\\."
         }
       ]
+    },
+    { 
+      "comment": "Descriptions should always look like strings, even if no quotations are needed",
+      "match": "(?:\\s(?:description)[ ])((\\w|[-_<>:\\./])+)([;]|$|\\b)",
+      "captures": {
+        "1": { "name": "string.quoted.double.junos" }
+      }
     }
   ],
   "uuid": "a24afbf3-0a1e-4795-87c3-7bb7e582bffe"

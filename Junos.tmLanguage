@@ -48,44 +48,36 @@
 		<dict>
 			<key>captures</key>
 			<dict>
-				<key>4</key>
+				<key>5</key>
 				<dict>
 					<key>name</key>
 					<string>support.function.junos</string>
 				</dict>
 			</dict>
+			<key>comment</key>
+			<string>Major sections of the configuration</string>
 			<key>match</key>
-			<string>((set )|(^\s)|^)(system|vlans|forwarding-options|routing-options|bridge-domains)(?= )</string>
+			<string>((set )|(^\s)|^|(request ))(system|vlans|forwarding-options|routing-options|bridge-domains|interfaces|groups|snmp|poe|routing-instances|ethernet-switching-options|security)(?= )</string>
 		</dict>
 		<dict>
 			<key>captures</key>
 			<dict>
-				<key>4</key>
+				<key>5</key>
 				<dict>
 					<key>name</key>
 					<string>keyword.control.junos</string>
 				</dict>
 			</dict>
+			<key>comment</key>
+			<string>minor sections of the config.</string>
 			<key>match</key>
-			<string>((set )|(^\s)|^)(interfaces|groups|snmp|poe|routing-instances|ethernet-switching-options|security)(?= )</string>
-		</dict>
-		<dict>
-			<key>captures</key>
-			<dict>
-				<key>4</key>
-				<dict>
-					<key>name</key>
-					<string>storage.type.function.inline.junos</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>((set )|(^\s)|^)(policy-options|protocols|chassis|firewall|applications|multi-chassis|redundant-power-system|services|virtual-chassis|event-options|class-of-service|access|access-profile|accounting-options|diameter|dynamic-profiles|fabric|jsrc|jsrc-partition|logical-systems|multicast-snooping-options|switch-options|wlan|smtp|schedulers)(?= )</string>
+			<string>((set )|(^\s)|^|(request ))(policy-options|protocols|chassis|firewall|applications|multi-chassis|redundant-power-system|services|virtual-chassis|event-options|class-of-service|access|access-profile|accounting-options|diameter|dynamic-profiles|fabric|jsrc|jsrc-partition|logical-systems|multicast-snooping-options|switch-options|wlan|smtp|schedulers)(?= )</string>
 		</dict>
 		<dict>
 			<key>comment</key>
 			<string>Interface names</string>
 			<key>match</key>
-			<string>((((ge-|et-|so-|fe-|xe-)(\d+/\d+/\d+)\b)|st\d+|lo\d+|ae\d+|irb)(\.\d+)?\b)|(\b(vlan\.\d+)\b)</string>
+			<string>\s(((((ge-|et-|so-|fe-|xe-)(\d+/\d+/\d+))|st\d+|lo\d+|ae\d+|irb)(\.\d+)?)|((vlan\.\d+)))\b</string>
 			<key>name</key>
 			<string>entity.name.function.junos</string>
 		</dict>
@@ -100,7 +92,21 @@
 		<dict>
 			<key>captures</key>
 			<dict>
-				<key>3</key>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>constant.numeric.integer.long.octal.junos</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Unit numbers, port numbers, etc</string>
+			<key>match</key>
+			<string>(?:\s(?:unit|destination-port|source-port)[ ])((\d|[-])+)([;]|$|\b)</string>
+		</dict>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
 				<dict>
 					<key>name</key>
 					<string>variable.language.junos</string>
@@ -109,7 +115,7 @@
 			<key>comment</key>
 			<string>User defined arbitrary names (such as filters, policy names, prefix-lists, etc)</string>
 			<key>match</key>
-			<string>(?:\s(?:logical-systems|routing-instances|rule|rule-set|pool|class|from-zone|to-zone|apply-groups|file|host-name|address|domain-name|community|trap-group|policy|policy-statement|filter|prefix-list|proposal|security-zone|term|application|application-set|vlans|gateway)[ ])((\w|[-_:\.])+)([ ;]|$)</string>
+			<string>(?:\s(?:logical-systems|source-prefix-list|count|destination-prefix-list|import|export|instance|next-hop-group|routing-instances|rule|rule-set|pool|class|unit|port-mirror-instance|from-zone|to-zone|apply-groups|file|host-name|domain-name|community|trap-group|policy|policy-statement|filter|prefix-list|proposal|security-zone|term|application|application-set|vlans|gateway|user|policer)[ ])((\w|[-_&lt;&gt;:\./])+)([;]|$|\b)</string>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -180,6 +186,20 @@
 					<string>constant.character.escape.junos</string>
 				</dict>
 			</array>
+		</dict>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>string.quoted.double.junos</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Descriptions should always look like strings, even if no quotations are needed</string>
+			<key>match</key>
+			<string>(?:\s(?:description)[ ])((\w|[-_&lt;&gt;:\./])+)([;]|$|\b)</string>
 		</dict>
 	</array>
 	<key>scopeName</key>
