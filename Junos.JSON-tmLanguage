@@ -21,7 +21,7 @@
     },
     {
       "comment": "Major sections of the configuration",
-      "match": "(?:^(\\s)*)((set )|(request )|(delete )|(edit )|(show )|(protect )|(unprotect )|(deactivate )|(activate ))?(system|vlans|forwarding-options|routing-options|bridge-domains|interfaces|groups|snmp|poe|routing-instances|ethernet-switching-options|security)(?=[ \n])",
+      "match": "(?:^(\\s)*)((set )|(request )|(delete )|(edit )|(show )|(protect )|(protect: )|(inactive: )|(unprotect )|(deactivate )|(activate ))?(system|vlans|forwarding-options|routing-options|bridge-domains|interfaces|groups|snmp|poe|routing-instances|ethernet-switching-options|security)(?=[ \n])",
       "captures": {
         "3": { "name": "keyword.control.junos" },
         "4": { "name": "keyword.control.junos" },
@@ -32,12 +32,14 @@
         "9": { "name": "keyword.control.junos" },
         "10": { "name": "keyword.control.junos" },
         "11": { "name": "keyword.control.junos" },
-        "12": { "name": "entity.name.function.junos" }
+        "12": { "name": "keyword.control.junos" },
+        "13": { "name": "keyword.control.junos" },
+        "14": { "name": "entity.name.function.junos" }
       }
     },
     {
       "comment": "minor sections of the config.",
-      "match": "(?:^(\\s)*)((set )|(request )|(delete )|(edit )|(show )|(protect )|(unprotect )|(deactivate )|(activate ))?(policy-options|apply-groups|protocols|chassis|firewall|applications|multi-chassis|redundant-power-system|services|virtual-chassis|event-options|class-of-service|access|access-profile|accounting-options|diameter|dynamic-profiles|fabric|jsrc|jsrc-partition|logical-systems|multicast-snooping-options|switch-options|wlan|smtp|schedulers)(?=[ \n])",
+      "match": "(?:^(\\s)*)((set )|(request )|(delete )|(edit )|(show )|(protect )|(protect: )|(inactive: )|(unprotect )|(deactivate )|(activate ))?(policy-options|apply-groups|protocols|chassis|firewall|applications|multi-chassis|redundant-power-system|services|virtual-chassis|event-options|class-of-service|access|access-profile|accounting-options|diameter|dynamic-profiles|fabric|jsrc|jsrc-partition|logical-systems|multicast-snooping-options|switch-options|wlan|smtp|schedulers)(?=[ \n])",
       "captures": {
         "3": { "name": "keyword.control.junos" },
         "4": { "name": "keyword.control.junos" },
@@ -48,7 +50,9 @@
         "9": { "name": "keyword.control.junos" },
         "10": { "name": "keyword.control.junos" },
         "11": { "name": "keyword.control.junos" },
-        "12": { "name": "entity.name.function.junos" }
+        "12": { "name": "keyword.control.junos" },
+        "13": { "name": "keyword.control.junos" },
+        "14": { "name": "entity.name.function.junos" }
       }
     },
     {
