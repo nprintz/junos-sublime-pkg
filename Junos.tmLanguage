@@ -169,7 +169,7 @@
 			<key>comment</key>
 			<string>Interface names</string>
 			<key>match</key>
-			<string>\s(((((ge-|et-|so-|fe-|xe-)(\d+/\d+/\d+))|st\d+|lo\d+|ae\d+|irb)(\.\d+)?)|((vlan\.\d+)))\b</string>
+			<string>\b(((((ge-|et-|so-|fe-|gr-|xe-)(\d+/\d+/\d+))|st\d+|lo\d+|me\d+|vme\d+|ae\d+|irb)(\.\d+)?)|((vlan\.\d+)))\b</string>
 			<key>name</key>
 			<string>support.class.junos</string>
 		</dict>
