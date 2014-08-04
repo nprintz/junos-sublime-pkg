@@ -48,10 +48,20 @@
 		<dict>
 			<key>captures</key>
 			<dict>
-				<key>2</key>
+				<key>10</key>
 				<dict>
 					<key>name</key>
 					<string>keyword.control.junos</string>
+				</dict>
+				<key>11</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.junos</string>
+				</dict>
+				<key>12</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.junos</string>
 				</dict>
 				<key>3</key>
 				<dict>
@@ -76,22 +86,42 @@
 				<key>7</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.function.junos</string>
+					<string>keyword.control.junos</string>
+				</dict>
+				<key>8</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.junos</string>
+				</dict>
+				<key>9</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.junos</string>
 				</dict>
 			</dict>
 			<key>comment</key>
 			<string>Major sections of the configuration</string>
 			<key>match</key>
-			<string>(?:(^\s)|^|(set )|(request )|(delete )|(edit )|(show ))(system|vlans|forwarding-options|routing-options|bridge-domains|interfaces|groups|snmp|poe|routing-instances|ethernet-switching-options|security)(?=[ 
+			<string>(?:^(\s)*)((set )|(request )|(delete )|(edit )|(show )|(protect )|(unprotect )|(deactivate )|(activate ))?(system|vlans|forwarding-options|routing-options|bridge-domains|interfaces|groups|snmp|poe|routing-instances|ethernet-switching-options|security)(?=[ 
 ])</string>
 		</dict>
 		<dict>
 			<key>captures</key>
 			<dict>
-				<key>2</key>
+				<key>10</key>
 				<dict>
 					<key>name</key>
 					<string>keyword.control.junos</string>
+				</dict>
+				<key>11</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.junos</string>
+				</dict>
+				<key>12</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.junos</string>
 				</dict>
 				<key>3</key>
 				<dict>
@@ -116,13 +146,23 @@
 				<key>7</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.function.junos</string>
+					<string>keyword.control.junos</string>
+				</dict>
+				<key>8</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.junos</string>
+				</dict>
+				<key>9</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.junos</string>
 				</dict>
 			</dict>
 			<key>comment</key>
 			<string>minor sections of the config.</string>
 			<key>match</key>
-			<string>(?:(^\s)|^|(set )|(request )|(delete )|(edit )|(show ))(policy-options|apply-groups|protocols|chassis|firewall|applications|multi-chassis|redundant-power-system|services|virtual-chassis|event-options|class-of-service|access|access-profile|accounting-options|diameter|dynamic-profiles|fabric|jsrc|jsrc-partition|logical-systems|multicast-snooping-options|switch-options|wlan|smtp|schedulers)(?=[ 
+			<string>(?:^(\s)*)((set )|(request )|(delete )|(edit )|(show )|(protect )|(unprotect )|(deactivate )|(activate ))?(policy-options|apply-groups|protocols|chassis|firewall|applications|multi-chassis|redundant-power-system|services|virtual-chassis|event-options|class-of-service|access|access-profile|accounting-options|diameter|dynamic-profiles|fabric|jsrc|jsrc-partition|logical-systems|multicast-snooping-options|switch-options|wlan|smtp|schedulers)(?=[ 
 ])</string>
 		</dict>
 		<dict>
