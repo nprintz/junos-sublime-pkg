@@ -31,7 +31,7 @@
 		<dict>
 			<key>captures</key>
 			<dict>
-				<key>1</key>
+				<key>2</key>
 				<dict>
 					<key>name</key>
 					<string>punctuation.definition.comment.junos</string>
@@ -40,7 +40,7 @@
 			<key>comment</key>
 			<string>Line comment (anything following a hashtag (#)</string>
 			<key>match</key>
-			<string>(#).*$
+			<string>(^|^\s|\s)(#).*$
 ?</string>
 			<key>name</key>
 			<string>comment.line.number-sign.junos</string>
@@ -48,30 +48,82 @@
 		<dict>
 			<key>captures</key>
 			<dict>
-				<key>5</key>
+				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>support.function.junos</string>
+					<string>keyword.control.junos</string>
 				</dict>
-			</dict>
-			<key>comment</key>
-			<string>Major sections of the configuration</string>
-			<key>match</key>
-			<string>((set )|(^\s)|^|(request ))(system|vlans|forwarding-options|routing-options|bridge-domains|interfaces|groups|snmp|poe|routing-instances|ethernet-switching-options|security)(?= )</string>
-		</dict>
-		<dict>
-			<key>captures</key>
-			<dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.junos</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.junos</string>
+				</dict>
 				<key>5</key>
 				<dict>
 					<key>name</key>
 					<string>keyword.control.junos</string>
 				</dict>
+				<key>6</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.junos</string>
+				</dict>
+				<key>7</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.junos</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Major sections of the configuration</string>
+			<key>match</key>
+			<string>(?:(^\s)|^|(set )|(request )|(delete )|(edit )|(show ))(system|vlans|forwarding-options|routing-options|bridge-domains|interfaces|groups|snmp|poe|routing-instances|ethernet-switching-options|security)(?=[ 
+])</string>
+		</dict>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.junos</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.junos</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.junos</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.junos</string>
+				</dict>
+				<key>6</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.junos</string>
+				</dict>
+				<key>7</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.junos</string>
+				</dict>
 			</dict>
 			<key>comment</key>
 			<string>minor sections of the config.</string>
 			<key>match</key>
-			<string>((set )|(^\s)|^|(request ))(policy-options|protocols|chassis|firewall|applications|multi-chassis|redundant-power-system|services|virtual-chassis|event-options|class-of-service|access|access-profile|accounting-options|diameter|dynamic-profiles|fabric|jsrc|jsrc-partition|logical-systems|multicast-snooping-options|switch-options|wlan|smtp|schedulers)(?= )</string>
+			<string>(?:(^\s)|^|(set )|(request )|(delete )|(edit )|(show ))(policy-options|apply-groups|protocols|chassis|firewall|applications|multi-chassis|redundant-power-system|services|virtual-chassis|event-options|class-of-service|access|access-profile|accounting-options|diameter|dynamic-profiles|fabric|jsrc|jsrc-partition|logical-systems|multicast-snooping-options|switch-options|wlan|smtp|schedulers)(?=[ 
+])</string>
 		</dict>
 		<dict>
 			<key>comment</key>
@@ -79,7 +131,7 @@
 			<key>match</key>
 			<string>\s(((((ge-|et-|so-|fe-|xe-)(\d+/\d+/\d+))|st\d+|lo\d+|ae\d+|irb)(\.\d+)?)|((vlan\.\d+)))\b</string>
 			<key>name</key>
-			<string>entity.name.function.junos</string>
+			<string>support.class.junos</string>
 		</dict>
 		<dict>
 			<key>comment</key>
