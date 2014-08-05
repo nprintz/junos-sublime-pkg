@@ -7,7 +7,7 @@ junos-sublime-pkg
 This is a Sublime Text 2 package to highlight the syntax for configurations on Juniper Junos (EX, MX, SRX) devices. It will work for configurations both in set mode and stanza form.  
 
 ### Installation
-Currently I am waiting for this package to be accepted into [Package Control](https://sublime.wbond.net/installation). If it is accepted, then this would be the easiest method of installation. To install manually, simply download the lastest release [here](https://github.com/nprintz/junos-sublime-pkg/tags), and drop the two `.tmLanguage` files into your `Packages/User` folder. The Packages folder can be found by going to the `Sublime Text 2` > `Preferences` > `Browse Packages` menu option. 
+Currently I am waiting for this package to be accepted into [Package Control](https://sublime.wbond.net/installation). If it is accepted, then this would be the easiest method of installation. To install manually, simply download the lastest release [here](https://github.com/nprintz/junos-sublime-pkg/releases/latest), and drop the two `.tmLanguage` files into your `Packages/User` folder. The Packages folder can be found by going to the `Sublime Text 2` > `Preferences` > `Browse Packages` menu option. 
 
 ### Matches  
 Name  | Description  
