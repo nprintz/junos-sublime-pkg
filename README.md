@@ -1,7 +1,7 @@
 junos-sublime-pkg
 =================
 
-Junos Config Syntax Highlighting for Sublime Text  
+**Junos Config Syntax Highlighting for Sublime Text**  
 
 ### Description  
 This is a Sublime Text 2 package to highlight the syntax for configurations on Juniper Junos (EX, MX, SRX) devices. It will work for configurations both in set mode and stanza form.  
@@ -12,14 +12,15 @@ Currently I am waiting for this package to be accepted into [Package Control](ht
 ### Matches  
 Name  | Description  
 ------|------------  
-Comment Block or Annotation | `/* Annotation */` for annotations in stanza mode  
-Line Comment | Anything after number sign `#` on a line, for comments  
+Comment Block or Annotation | For annotations in stanza mode: `/* Some Text */`  
+Line Comment | Anything after a number sign, `#`, on a line  
 Major Sections | Matches major sections of the config and the preceeding keyword (if set mode). For example, `set system host-name` would highlight `set` as a control keyword, and `system` as a major category (entity.name.function.junos)  
 Minor Sections | Same as major sections, just for more of the less common sections of Junos config  
-Interface names | Highlights interface names with the class color  
+Interface names | Highlights interface names  
 IPv4 and IPv6 addresses | All addresses get highlighted as a number  
 Unit numbers | Unit numbers get highlighted as a number  
 User defined arbitrary names | These get highlighted as a variable. Examples include the names of logical-systems, filters, prefix-lists, policies, NAT rules, security zones, policers, etc  
+Strings | Anything between single- or double-quotes ( ' or " ) gets marked as a string. This also includes any word block after the keyword description, which may not be quoted  
 
 ### Examples  
 Examples with the `Twilight` color scheme:
