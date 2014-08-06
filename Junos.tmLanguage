@@ -198,7 +198,7 @@
 			<key>comment</key>
 			<string>IP addresses, with or without a mask</string>
 			<key>match</key>
-			<string>\b((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))([/]\d+)?\b</string>
+			<string>\b((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))([/]\d{1,2})?\b</string>
 			<key>name</key>
 			<string>constant.numeric.integer.long.octal.junos</string>
 		</dict>
@@ -206,7 +206,15 @@
 			<key>comment</key>
 			<string>IPv6 Addresses. This will not fully validate the structure of the IP, so some invalid IPv6 addresses might be false positives. IPv6 addresses themselves should be validated by running commands against a device.</string>
 			<key>match</key>
-			<string>(\b|^)((?=.*::)(?!.*::.+::)(::)?([\dA-Fa-f]{1,4}:(:|\b)|){5}|([\dA-Fa-f]{1,4}:){6})((([\dA-Fa-f]{1,4}((?!\4)::|:\b|[/]\d+|$))|(?!\3\4)){2}|(((2[0-4]|1\d|[1-9])?\d|25[0-5])\.?\b){4})([/]\d+)?</string>
+			<string>(\b|^)((?=.*::)(?!.*::.+::)(::)?([\dA-Fa-f]{1,4}:(:|\b)|){5}|([\dA-Fa-f]{1,4}:){6})((([\dA-Fa-f]{1,4}((?!\4)::|:\b|[/]\d+|$))|(?!\3\4)){2}|(((2[0-4]|1\d|[1-9])?\d|25[0-5])\.?\b){4})([/]\d{1,3})?</string>
+			<key>name</key>
+			<string>constant.numeric.integer.long.octal.junos</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>MAC Addresses identified as a number</string>
+			<key>match</key>
+			<string>(?:(\b))([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})([/]\d{1,2})?\b</string>
 			<key>name</key>
 			<string>constant.numeric.integer.long.octal.junos</string>
 		</dict>
