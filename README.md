@@ -19,7 +19,7 @@ Line Comment | Anything after a number sign, `#`, on a line
 Major Sections | Matches major sections of the config and the preceeding keyword (if set mode). For example, `set system host-name` would highlight `set` as a control keyword, and `system` as a major category (entity.name.function.junos)  
 Minor Sections | Same as major sections, just for more of the less common sections of Junos config  
 Interface names | Highlights interface names  
-IPv4 and IPv6 addresses | All addresses get highlighted as a number  
+IPv4 and IPv6 addresses | All IP addresses get highlighted as a number  
 MAC addresses | All MAC addresses get highlighted as a number  
 Unit numbers | Unit numbers get highlighted as a number  
 User defined arbitrary names | These get highlighted as a variable. Examples include the names of logical-systems, filters, prefix-lists, policies, NAT rules, security zones, policers, etc  
