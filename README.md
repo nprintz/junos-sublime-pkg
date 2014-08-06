@@ -4,10 +4,12 @@ junos-sublime-pkg
 **Junos Config Syntax Highlighting for Sublime Text**  
 
 ### Description  
-This is a Sublime Text 2 package to highlight the syntax for configurations on Juniper Junos (EX, MX, SRX) devices. It will work for configurations both in set mode and stanza form.  
+This is a Sublime Text 2 package to highlight the syntax for configurations on Juniper Junos (EX, MX, SRX) devices. It will work for configurations both in set mode and stanza form.  Since Juniper configs are not standardized to any file extensions, this Syntax does not automatically bind itself to any. This means you'll want to use the syntax menu in the bottom right, or press Cmd+Shift+P and type `Junos` to set the syntax for an open file.
 
 ### Installation
-Currently I am waiting for this package to be accepted into [Package Control](https://sublime.wbond.net/installation). If it is accepted, then this would be the easiest method of installation. To install manually, simply download the lastest release [here](https://github.com/nprintz/junos-sublime-pkg/releases/latest), and drop the two `.tmLanguage` files into your `Packages/User` folder. The Packages folder can be found by going to the `Sublime Text 2` > `Preferences` > `Browse Packages` menu option. 
+The easiest method of installation is using [Package Control](https://sublime.wbond.net/installation). Simply press Cmd+Shift+P and type `pcin` to get to `Package Control: Install Package`, then search for `Junos`.  
+
+To install manually, simply download the lastest release [here](https://github.com/nprintz/junos-sublime-pkg/releases/latest), and drop the two `.tmLanguage` files into your `Packages/User` folder. The Packages folder can be found by going to the `Sublime Text 2` > `Preferences` > `Browse Packages` menu option. 
 
 ### Matches  
 Name  | Description  
@@ -18,12 +20,13 @@ Major Sections | Matches major sections of the config and the preceeding keyword
 Minor Sections | Same as major sections, just for more of the less common sections of Junos config  
 Interface names | Highlights interface names  
 IPv4 and IPv6 addresses | All addresses get highlighted as a number  
+MAC addresses | All MAC addresses get highlighted as a number  
 Unit numbers | Unit numbers get highlighted as a number  
 User defined arbitrary names | These get highlighted as a variable. Examples include the names of logical-systems, filters, prefix-lists, policies, NAT rules, security zones, policers, etc  
-Strings | Anything between single- or double-quotes ( ' or " ) gets marked as a string. This also includes any word block after the keyword description, which may not be quoted  
+Strings | Anything between single- or double-quotes ( ' or " ) gets marked as a string. This also includes any word block after the keyword `description`, which may not be quoted  
 
 ### Examples  
-Examples with the `Twilight` color scheme:
+Examples with the built-in `Twilight` color scheme:
 
 Set mode:  
 ![Set Mode](https://cloud.githubusercontent.com/assets/7231007/3803665/5fb3e326-1c1d-11e4-80fd-9b222f8a1abf.png)
