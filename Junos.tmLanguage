@@ -190,7 +190,7 @@
 			<key>comment</key>
 			<string>Interface names</string>
 			<key>match</key>
-			<string>\b(((((ge-|et-|so-|fe-|gr-|xe-)(\d+/\d+/\d+))|st\d+|lo\d+|me\d+|vme\d+|ae\d+|irb)(\.\d+)?)|((vlan\.\d+)))\b</string>
+			<string>\b(((((ge-|et-|so-|fe-|gr-|xe-|lt-|vt-|si-|sp-)(\d+/\d+/\d+))|st\d+|lo\d+|me\d+|vme\d+|ae\d+|irb)(\.\d+)?)|((vlan\.\d+)))\b</string>
 			<key>name</key>
 			<string>support.class.junos</string>
 		</dict>
@@ -244,7 +244,7 @@
 			<key>comment</key>
 			<string>User defined arbitrary names (such as filters, policy names, prefix-lists, etc)</string>
 			<key>match</key>
-			<string>(?:\s(?:logical-systems|source-prefix-list|count|destination-prefix-list|import|export|instance|next-hop-group|routing-instances|rule|rule-set|pool|class|unit|port-mirror-instance|from-zone|to-zone|apply-groups|file|host-name|domain-name|community|trap-group|policy|policy-statement|filter|prefix-list|proposal|security-zone|term|application|application-set|vlans|gateway|user|policer)[ ])((\w|[-_&lt;&gt;:\./])+)([;]|$|\b)</string>
+			<string>(?:\s(?:logical-systems|source-prefix-list|interface-set|count|destination-prefix-list|import|export|instance|next-hop-group|routing-instances|rule|rule-set|pool|class|unit|port-mirror-instance|from-zone|to-zone|apply-groups|file|host-name|domain-name|community|trap-group|policy|policy-statement|filter|prefix-list|proposal|security-zone|term|application|application-set|vlans|gateway|user|policer)[ ])((\w|[-_&lt;&gt;:\./])+)([;]|$|\b)</string>
 		</dict>
 		<dict>
 			<key>begin</key>
