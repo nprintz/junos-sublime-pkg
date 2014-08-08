@@ -84,7 +84,7 @@
     },
     {
       "comment": "User defined arbitrary names (such as filters, policy names, prefix-lists, etc)",
-      "match": "(?:\\s(?:logical-systems|source-prefix-list|interface-set|count|destination-prefix-list|import|export|instance|next-hop-group|routing-instances|rule|rule-set|pool|class|unit|port-mirror-instance|from-zone|to-zone|apply-groups|file|host-name|domain-name|community|trap-group|policy|policy-statement|filter|prefix-list|proposal|security-zone|term|application|application-set|vlans|gateway|user|policer)[ ])((\\w|[-_<>:\\./])+)([;]|$|\\b)",
+      "match": "(?:\\s(?:logical-systems|source-prefix-list|interface-set|count|destination-prefix-list|import|export|instance|next-hop-group|routing-instances|rule|rule-set|pool|class|unit|port-mirror-instance|from-zone|to-zone|apply-groups|file|host-name|domain-name|community|trap-group|policy|policy-statement|filter|prefix-list|proposal|address-set|scheduler|security-zone|term|application|application-set|vlans|gateway|user|policer)[ ])((\\w|[-_<>:\\./])+)([;]|$|\\b)",
       "captures": {
         "1": { "name": "variable.language.junos" }
       }
