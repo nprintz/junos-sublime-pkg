@@ -4,7 +4,56 @@
 <dict>
 	<key>fileTypes</key>
 	<array>
-		<string></string>
+		<string>conf</string>
+		<string>conf.1</string>
+		<string>conf.2</string>
+		<string>conf.3</string>
+		<string>conf.4</string>
+		<string>conf.5</string>
+		<string>conf.6</string>
+		<string>conf.7</string>
+		<string>conf.8</string>
+		<string>conf.9</string>
+		<string>conf.10</string>
+		<string>conf.11</string>
+		<string>conf.12</string>
+		<string>conf.13</string>
+		<string>conf.14</string>
+		<string>conf.15</string>
+		<string>conf.16</string>
+		<string>conf.17</string>
+		<string>conf.18</string>
+		<string>conf.19</string>
+		<string>conf.20</string>
+		<string>conf.21</string>
+		<string>conf.22</string>
+		<string>conf.23</string>
+		<string>conf.24</string>
+		<string>conf.25</string>
+		<string>conf.26</string>
+		<string>conf.27</string>
+		<string>conf.28</string>
+		<string>conf.29</string>
+		<string>conf.30</string>
+		<string>conf.31</string>
+		<string>conf.32</string>
+		<string>conf.33</string>
+		<string>conf.34</string>
+		<string>conf.35</string>
+		<string>conf.36</string>
+		<string>conf.37</string>
+		<string>conf.38</string>
+		<string>conf.39</string>
+		<string>conf.40</string>
+		<string>conf.41</string>
+		<string>conf.42</string>
+		<string>conf.43</string>
+		<string>conf.44</string>
+		<string>conf.45</string>
+		<string>conf.46</string>
+		<string>conf.47</string>
+		<string>conf.48</string>
+		<string>conf.49</string>
 	</array>
 	<key>name</key>
 	<string>Junos</string>
