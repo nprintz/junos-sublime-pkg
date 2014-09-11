@@ -4,7 +4,7 @@ junos-sublime-pkg
 **Junos Config Syntax Highlighting for Sublime Text**  
 
 ### Description  
-This is a Sublime Text 2 package to highlight the syntax for configurations on Juniper Junos (EX, MX, SRX) devices. It will work for configurations both in set mode and stanza form.  This syntax will automatically associate to a file with any of these extensions: `.conf`, and `.conf.1` through `.conf.49`. This accounts for the maximum number of rollback configs. To set the syntax for a file ending in any other extension, use the syntax menu in the bottom right, or press Cmd+Shift+P and type `Junos` to set the syntax for an open file.
+This is a Sublime Text 2/3 package to highlight the syntax for configurations on Juniper Junos (EX, MX, SRX) devices. It will work for configurations both in set mode and stanza form.  This syntax will automatically associate to a file with any of these extensions: `.conf`, and `.conf.1` through `.conf.49`. This accounts for the maximum number of rollback configs. To set the syntax for a file ending in any other extension, use the syntax menu in the bottom right, or press Cmd+Shift+P and type `Junos` to set the syntax for an open file.
 
 ### Installation
 The easiest method of installation is using [Package Control](https://sublime.wbond.net/installation). Simply press Cmd+Shift+P and type `pcin` to get to `Package Control: Install Package`, then search for `Junos`.  
