@@ -93,8 +93,13 @@
       }
     },
     {
+      "comment": "URL Addresses, either matching character URL patterns, or http(s):// followed by an IPv4 address. ",
+      "name": "keyword.operator.junos",
+      "match": "\\b((https?:\/\/)|(scp:\/\/)|((s?|t?)ftp:\/\/))?((([\\da-zA-Z\\.-]+)\\.([A-Za-z\\.]{2,6})([\/\\w \\.-]*)*)|(\\b((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\\b))\/?"
+    },
+    {
       "comment": "User defined arbitrary names (such as filters, policy names, prefix-lists, etc)",
-      "match": "(?:\\s(?:logical-systems|source-prefix-list|interface-set|count|destination-prefix-list|import|export|instance|next-hop-group|routing-instances|rule|rule-set|pool|class|unit|port-mirror-instance|from-zone|to-zone|apply-groups|file|host-name|domain-name|community|trap-group|policy|policy-statement|filter|prefix-list|proposal|address-set|scheduler|security-zone|term|application|application-set|vlans|gateway|user|policer)[ ])((\\w|[-_<>:\\./])+)([;]|$|\\b)",
+      "match": "(?:\\s(?:logical-systems|source-prefix-list|group|mime-pattern|url-pattern|custom-url-category|profile|url-whitelist|url-blacklist|ca-profile|idp-policy|active-policy|interface-set|count|destination-prefix-list|import|export|instance|utm-policy|ids-option|next-hop-group|routing-instances|rule|rule-set|pool|class|unit|port-mirror-instance|from-zone|to-zone|apply-groups|file|host-name|domain-name|community|trap-group|policy|policy-statement|filter|prefix-list|proposal|address-set|scheduler|security-zone|term|application|application-set|vlans|gateway|user|policer)[ ])((\\w|[-_<>:\\./])+)([;]|$|\\b)",
       "captures": {
         "1": { "name": "variable.language.junos" }
       }
