@@ -285,7 +285,7 @@
 			<key>comment</key>
 			<string>URL Addresses, either matching character URL patterns, or http(s):// followed by an IPv4 address. </string>
 			<key>match</key>
-			<string>\b((https?://)|(scp://)|((s?|t?)ftp://))?((([\da-zA-Z\.-]+)\.([A-Za-z\.]{2,6})([/\w \.-]*)*)|(\b((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\b))/?</string>
+			<string>\b((https?://)|(scp://)|((s?|t?)ftp://))?((([\da-zA-Z\.-]+)\.([A-Za-z\.]{2,6}))|(\b((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\b))(([/\w\.&amp;?=-]*)*)/?</string>
 			<key>name</key>
 			<string>keyword.operator.junos</string>
 		</dict>
