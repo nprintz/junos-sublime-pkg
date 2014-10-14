@@ -243,7 +243,7 @@
 			<key>comment</key>
 			<string>Unit numbers, port numbers, etc</string>
 			<key>match</key>
-			<string>(?:\s(?:unit|destination-port|source-port)[ ])((\d|[-])+)([;]|$|\b)</string>
+			<string>(?:\s(?:unit|destination-port|source-port)[ ])((\d{1,5})(-\d{1,5})?)([;]|$|\b)</string>
 		</dict>
 		<dict>
 			<key>comment</key>

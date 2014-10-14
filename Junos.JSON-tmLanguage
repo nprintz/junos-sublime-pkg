@@ -97,7 +97,7 @@
     },
     {
       "comment": "Unit numbers, port numbers, etc",
-      "match": "(?:\\s(?:unit|destination-port|source-port)[ ])((\\d|[-])+)([;]|$|\\b)",
+      "match": "(?:\\s(?:unit|destination-port|source-port)[ ])((\\d{1,5})(-\\d{1,5})?)([;]|$|\\b)",
       "captures": {
         "1": { "name": "constant.numeric.integer.long.octal.junos" }
       }
