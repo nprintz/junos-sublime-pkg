@@ -31,54 +31,64 @@
     },
     {
       "comment": "Major sections of the configuration",
-      "match": "(?:^(\\s)*)((set )|(request )|(delete )|(edit )|(show )|(protect )|(protect: )|(inactive: )|(unprotect )|(deactivate )|(activate ))?(system|vlans|forwarding-options|routing-options|bridge-domains|interfaces|groups|snmp|poe|routing-instances|ethernet-switching-options|security)(?=[ \n])",
+      "match": "(?:^(\\s)*)(set |request |delete |edit |show |protect |protect: |inactive: |unprotect |deactivate |activate )?(system|forwarding-options|routing-options|interfaces|snmp|poe|ethernet-switching-options|security)(?=[ \n])",
       "captures": {
-        "3": { "name": "keyword.control.junos" },
-        "4": { "name": "keyword.control.junos" },
-        "5": { "name": "keyword.control.junos" },
-        "6": { "name": "keyword.control.junos" },
-        "7": { "name": "keyword.control.junos" },
-        "8": { "name": "keyword.control.junos" },
-        "9": { "name": "keyword.control.junos" },
-        "10": { "name": "keyword.control.junos" },
-        "11": { "name": "keyword.control.junos" },
-        "12": { "name": "keyword.control.junos" },
-        "13": { "name": "keyword.control.junos" },
-        "14": { "name": "entity.name.function.junos" }
+        "2": { "name": "keyword.control.junos" },
+        "3": { "name": "entity.name.function.junos" }
       }
     },
     {
       "comment": "minor sections of the config.",
-      "match": "(?:^(\\s)*)((set )|(request )|(delete )|(edit )|(show )|(protect )|(protect: )|(inactive: )|(unprotect )|(deactivate )|(activate ))?(policy-options|apply-groups|protocols|chassis|firewall|applications|multi-chassis|redundant-power-system|services|virtual-chassis|event-options|class-of-service|access|access-profile|accounting-options|diameter|dynamic-profiles|fabric|jsrc|jsrc-partition|logical-systems|multicast-snooping-options|switch-options|wlan|smtp|schedulers)(?=[ \n])",
+      "match": "(?:^(\\s)*)(set |request |delete |edit |show |protect |protect: |inactive: |unprotect |deactivate |activate )?(policy-options|protocols|chassis|firewall|applications|multi-chassis|redundant-power-system|version|services|virtual-chassis|event-options|class-of-service|access|accounting-options|diameter|fabric|multicast-snooping-options|switch-options|wlan|smtp|schedulers)(?=[ \n])",
       "captures": {
-        "3": { "name": "keyword.control.junos" },
-        "4": { "name": "keyword.control.junos" },
-        "5": { "name": "keyword.control.junos" },
-        "6": { "name": "keyword.control.junos" },
-        "7": { "name": "keyword.control.junos" },
-        "8": { "name": "keyword.control.junos" },
-        "9": { "name": "keyword.control.junos" },
-        "10": { "name": "keyword.control.junos" },
-        "11": { "name": "keyword.control.junos" },
-        "12": { "name": "keyword.control.junos" },
-        "13": { "name": "keyword.control.junos" },
-        "14": { "name": "entity.name.function.junos" }
+        "2": { "name": "keyword.control.junos" },
+        "3": { "name": "entity.name.function.junos" }
       }
+    },
+    {
+      "comment": "sections of the config that have a user-defined sub-item. For Example 'set routing-instances my_router ...' highlights 'set' as a control word, 'routing-instances' as an function entity, and 'my_router' as a variable.",
+      "match": "(?:^(?:\\s)*)(set |request |delete |edit |show |protect |protect: |inactive: |unprotect |deactivate |activate )?(apply-groups|groups|access-profile|vlans|bridge-domains|routing-instances|dynamic-profiles|jsrc-partition|logical-systems)(?:[ ](?:\\s*{\\s*)?)(([-\\w_<>:\\./])+)(?:[;]|$|\\b)",
+      "captures": {
+        "1": { "name": "keyword.control.junos" },
+        "2": { "name": "entity.name.function.junos" },
+        "3": { "name": "variable.language.junos" }
+      }
+    },
+    {
+      "comment": "sections that have a user-defined sub-item, but modified to capture in stanza mode. Had to be its own capture, since it covers multiple lines.",
+      "name": "",
+      "begin": "(?:^\\s*)(protect: |inactive:)?(apply-groups|groups|access-profile|vlans|bridge-domains|routing-instances|dynamic-profiles|jsrc-partition|logical-systems)(?:\\s*{\\s*)?",
+      "beginCaptures": {
+        "1": { "name": "keyword.control.junos" },
+        "2": { "name": "entity.name.function.junos" }
+      }, 
+      "end": "\\s{", 
+      "patterns": [
+        { "name": "variable.language.junos",
+          "match": "\\s*(([-\\w_<>:\\./])+)"
+        }
+      ]
+    }, 
+    {
+      "comment": "keywords captured without a major/minor section attached",
+      "name": "keyword.control.junos",
+      "match": "(protect: |inactive: )"
     },
     {
       "comment": "Interface names",
       "name": "support.class.junos",
-      "match": "\\b(((((ge-|et-|so-|fe-|gr-|xe-|lt-|vt-|si-|sp-)(\\d+\/\\d+\/\\d+))|st\\d+|lo\\d+|me\\d+|vme\\d+|ae\\d+|irb)(\\.\\d+)?)|((vlan\\.\\d+)))\\b"
+      "match": "\\b((((ge-|et-|so-|fe-|gr-|xe-|lt-|vt-|si-|sp-)(\\d+\/\\d+\/\\d+))|(st|lo|me|vme|ae)\\d{1,3}|irb|vlan)(\\.\\d{1,5})?)\\b(?![-_<>])"
+      // "match": "\\b(((((ge-|et-|so-|fe-|gr-|xe-|lt-|vt-|si-|sp-)(\\d+\/\\d+\/\\d+))|st\\d+|lo\\d+|me\\d+|vme\\d+|ae\\d+|irb)(\\.\\d+)?)|((vlan\\.\\d+)))\\b"
     },
     {
-      "comment": "IP addresses, with or without a mask",
+      "comment": "IPv4 addresses, with or without a mask",
       "name": "constant.numeric.integer.long.octal.junos",
       "match": "\\b((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))([/]\\d{1,2})?\\b"
     },
     {
       "comment": "IPv6 Addresses. This will not fully validate the structure of the IP, so some invalid IPv6 addresses might be false positives. IPv6 addresses themselves should be validated by running commands against a device.",
       "name": "constant.numeric.integer.long.octal.junos",
-      "match": "(\\b|^)((?=.*::)(?!.*::.+::)(::)?([\\dA-Fa-f]{1,4}:(:|\\b)|){5}|([\\dA-Fa-f]{1,4}:){6})((([\\dA-Fa-f]{1,4}((?!\\4)::|:\\b|[/]\\d+|$))|(?!\\3\\4)){2}|(((2[0-4]|1\\d|[1-9])?\\d|25[0-5])\\.?\\b){4})([/]\\d{1,3})?"
+      "match": "(?:\\s|^)((?=.*::)(?!.*::.+::)(::)?([\\dA-Fa-f]{1,4}:(:|\\b)|){5}|([\\dA-Fa-f]{1,4}:){6})((([\\dA-Fa-f]{1,4}(::|:\\b|[/]\\d+|))|(?!\\3\\4)){2}|(((2[0-4]|1\\d|[1-9])?\\d|25[0-5])\\.?){4})([/]\\d{1,3})?(?:\\s|;)"
     },
     {
       "comment": "MAC Addresses identified as a number",
@@ -95,11 +105,16 @@
     {
       "comment": "URL Addresses, either matching character URL patterns, or http(s):// followed by an IPv4 address. ",
       "name": "keyword.operator.junos",
-      "match": "\\b((https?:\/\/)|(scp:\/\/)|((s?|t?)ftp:\/\/))?((([\\da-zA-Z\\.-]+)\\.([A-Za-z\\.]{2,6}))|(\\b((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\\b))(([\/\\w\\.&?=-]*)*)\/?"
+      "match": "\\b((https?:\/\/)|(scp:\/\/)|((s?|t?)ftp:\/\/))((([\\da-zA-Z\\.-]+)\\.([A-Za-z\\.]{2,6}))|(\\b((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\\b))(([\/\\w\\.&?=+-]*)*)\/?"
+    },
+    {
+      "comment": "Routing table names",
+      "name": "keyword.operator.junos",
+      "match": "(?:\\s)([\\w\\d_-]+\\.)?(inet6?|mpls|inetflow|iso|bgp\\.l(2|3)vpn)\\.\\d(?:\\b)"
     },
     {
       "comment": "User defined arbitrary names (such as filters, policy names, prefix-lists, etc)",
-      "match": "(?:\\s(?:logical-systems|source-prefix-list|group|mime-pattern|url-pattern|custom-url-category|profile|url-whitelist|url-blacklist|ca-profile|idp-policy|active-policy|interface-set|count|destination-prefix-list|import|export|instance|utm-policy|ids-option|next-hop-group|routing-instances|rule|rule-set|pool|class|unit|port-mirror-instance|from-zone|to-zone|apply-groups|file|host-name|domain-name|community|trap-group|policy|policy-statement|filter|prefix-list|proposal|address-set|scheduler|security-zone|term|application|application-set|vlans|gateway|user|policer)[ ])((\\w|[-_<>:\\./])+)([;]|$|\\b)",
+      "match": "(?:\\s(?:logical-systems|source-prefix-list|group|mime-pattern|url-pattern|label-switched-path|admin-groups|custom-url-category|profile|url-whitelist|url-blacklist|ca-profile|idp-policy|active-policy|interface-set|count|destination-prefix-list|import|export|instance|utm-policy|ids-option|next-hop-group|routing-instances|rule|rule-set|pool|class|unit|port-mirror-instance|from-zone|to-zone|apply-groups|file|host-name|domain-name|domain-search|community delete|community add|community set|community|trap-group|policy|policy-statement|import-policy|instance-export|instance-import|vrf-import|vrf-export|import|export|keep-import|inter-area-prefix-import|inter-area-prefix-export|network-summary-export|network-summary-import|bootstrap-import|bootstrap-export|filter|prefix-list|proposal|address-set|scheduler|rib-groups|security-zone|term|application|application-set|vlans|gateway|user|policer)[ ])(([-\\w_<>:\\./])+)([;]|$|\\b)",
       "captures": {
         "1": { "name": "variable.language.junos" }
       }

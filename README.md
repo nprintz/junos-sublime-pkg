@@ -22,6 +22,7 @@ Interface names | Highlights interface names
 IPv4 and IPv6 addresses | All IP addresses get highlighted as a number  
 MAC addresses | All MAC addresses get highlighted as a number  
 Unit numbers | Unit numbers get highlighted as a number  
+Routing Tables | Routing Table names are captured as a control keyword (inet.0, mytable.inet.2, mpls.0, etc)
 User defined arbitrary names | These get highlighted as a variable. Examples include the names of logical-systems, filters, prefix-lists, policies, NAT rules, security zones, policers, etc  
 Strings | Anything between single- or double-quotes ( ' or " ) gets marked as a string. This also includes any word block after the keyword `description`, which may not be quoted  
 URLs | Any http://, https://, ftp://, tftp://, sftp://, or scp:// URL string will be highlighted as an operator. This includes IPv4 addresses (i.e. http://10.0.0.10/index.php)
