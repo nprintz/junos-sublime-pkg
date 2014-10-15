@@ -22,7 +22,7 @@
       }
     },
     {
-      "comment": "Line comment (anything following a hashtag (#)",
+      "comment": "Line comment, anything following a hashtag (#)",
       "name": "comment.line.number-sign.junos",
       "match": "(^|^\\s|\\s)(#).*$\n?", 
       "captures": {
@@ -31,33 +31,22 @@
     },
     {
       "comment": "Major sections of the configuration",
-      "match": "(?:^(\\s)*)(set |request |delete |edit |show |protect |protect: |inactive: |unprotect |deactivate |activate )?(system|forwarding-options|routing-options|interfaces|snmp|poe|ethernet-switching-options|security)(?=[ \n])",
+      "match": "(?<=^|\\s)(system|forwarding-options|routing-options|routing-instances|logical-systems|vlans|bridge-domains|dynamic-profiles|interfaces|snmp|poe|ethernet-switching-options|security)(?=[ \n;])",
       "captures": {
-        "2": { "name": "keyword.control.junos" },
-        "3": { "name": "entity.name.function.junos" }
+        "1": { "name": "entity.name.function.junos" }
       }
     },
     {
       "comment": "minor sections of the config.",
-      "match": "(?:^(\\s)*)(set |request |delete |edit |show |protect |protect: |inactive: |unprotect |deactivate |activate )?(policy-options|protocols|chassis|firewall|applications|multi-chassis|redundant-power-system|version|services|virtual-chassis|event-options|class-of-service|access|accounting-options|diameter|fabric|multicast-snooping-options|switch-options|wlan|smtp|schedulers)(?=[ \n])",
+      "match": "(?<=^|\\s)(policy-options|protocols|chassis|firewall|applications|multi-chassis|redundant-power-system|version|services|virtual-chassis|event-options|class-of-service|access|accounting-options|diameter|fabric|multicast-snooping-options|switch-options|wlan|smtp|schedulers)(?=[ \n;])",
       "captures": {
-        "2": { "name": "keyword.control.junos" },
-        "3": { "name": "entity.name.function.junos" }
-      }
-    },
-    {
-      "comment": "sections of the config that have a user-defined sub-item. For Example 'set routing-instances my_router ...' highlights 'set' as a control word, 'routing-instances' as an function entity, and 'my_router' as a variable.",
-      "match": "(?:^(?:\\s)*)(set |request |delete |edit |show |protect |protect: |inactive: |unprotect |deactivate |activate )?(apply-groups|groups|access-profile|vlans|bridge-domains|routing-instances|dynamic-profiles|jsrc-partition|logical-systems)(?:[ ](?:\\s*{\\s*)?)(([-\\w_<>:\\./])+)(?:[;]|$|\\b)",
-      "captures": {
-        "1": { "name": "keyword.control.junos" },
-        "2": { "name": "entity.name.function.junos" },
-        "3": { "name": "variable.language.junos" }
+        "1": { "name": "entity.name.function.junos" }
       }
     },
     {
       "comment": "sections that have a user-defined sub-item, but modified to capture in stanza mode. Had to be its own capture, since it covers multiple lines.",
       "name": "",
-      "begin": "(?:^\\s*)(protect: |inactive:)?(apply-groups|groups|access-profile|vlans|bridge-domains|routing-instances|dynamic-profiles|jsrc-partition|logical-systems)(?:\\s*{\\s*)?",
+      "begin": "(?:^\\s*)(protect: |inactive:)?(apply-groups|groups|access-profile|vlans|bridge-domains|routing-instances|dynamic-profiles|jsrc-partition|logical-systems)(?:\\s{\\s*)",
       "beginCaptures": {
         "1": { "name": "keyword.control.junos" },
         "2": { "name": "entity.name.function.junos" }
@@ -65,20 +54,19 @@
       "end": "\\s{", 
       "patterns": [
         { "name": "variable.language.junos",
-          "match": "\\s*(([-\\w_<>:\\./])+)"
+          "match": "\\s*([-\\w_<>:\\./]+)"
         }
       ]
     }, 
     {
       "comment": "keywords captured without a major/minor section attached",
       "name": "keyword.control.junos",
-      "match": "(protect: |inactive: )"
+      "match": "(set|request|delete|edit|show|protect:?|inactive:|unprotect|deactivate|activate)(?= )"
     },
     {
       "comment": "Interface names",
       "name": "support.class.junos",
-      "match": "\\b((((ge-|et-|so-|fe-|gr-|xe-|lt-|vt-|si-|sp-)(\\d+\/\\d+\/\\d+))|(st|lo|me|vme|ae)\\d{1,3}|irb|vlan)(\\.\\d{1,5})?)\\b(?![-_<>])"
-      // "match": "\\b(((((ge-|et-|so-|fe-|gr-|xe-|lt-|vt-|si-|sp-)(\\d+\/\\d+\/\\d+))|st\\d+|lo\\d+|me\\d+|vme\\d+|ae\\d+|irb)(\\.\\d+)?)|((vlan\\.\\d+)))\\b"
+      "match": "\\b((((ge|et|so|fe|gr|xe|lt|vt|si|sp)(-\\d+\/\\d+\/\\d+))|(st|lo|me|vme|ae)\\d{1,3}|irb|vlan)(\\.\\d{1,5})?)\\b(?![-_<>])"
     },
     {
       "comment": "IPv4 addresses, with or without a mask",
@@ -97,7 +85,14 @@
     },
     {
       "comment": "Unit numbers, port numbers, etc",
-      "match": "(?:\\s(?:unit|destination-port|source-port)[ ])((\\d{1,5})(-\\d{1,5})?)([;]|$|\\b)",
+      "match": "(?:\\s(?:(?:peer-)?unit|queue(?:-num)?|destination-port|source-port)[ ])((\\d{1,5})(-\\d{1,5})?)(?=[;]|$|\\b)",
+      "captures": {
+        "1": { "name": "constant.numeric.integer.long.octal.junos" }
+      }
+    },
+    {
+      "comment": "Other general numbers",
+      "match": "(?<=\\s)(\\d+)(?=[;]|\\s)",
       "captures": {
         "1": { "name": "constant.numeric.integer.long.octal.junos" }
       }
@@ -110,11 +105,11 @@
     {
       "comment": "Routing table names",
       "name": "keyword.operator.junos",
-      "match": "(?:\\s)([\\w\\d_-]+\\.)?(inet6?|mpls|inetflow|iso|bgp\\.l(2|3)vpn)\\.\\d(?:\\b)"
+      "match": "(?<=\\s)([\\w\\d_-]+\\.)?(inet6?|mpls|inetflow|iso|bgp\\.l(2|3)vpn)\\.\\d{1,2}(?:\\b)"
     },
     {
       "comment": "User defined arbitrary names (such as filters, policy names, prefix-lists, etc)",
-      "match": "(?:\\s(?:logical-systems|source-prefix-list|group|mime-pattern|url-pattern|label-switched-path|admin-groups|custom-url-category|profile|url-whitelist|url-blacklist|ca-profile|idp-policy|active-policy|interface-set|count|destination-prefix-list|import|export|instance|utm-policy|ids-option|next-hop-group|routing-instances|rule|rule-set|pool|class|unit|port-mirror-instance|from-zone|to-zone|apply-groups|file|host-name|domain-name|domain-search|community delete|community add|community set|community|trap-group|policy|policy-statement|import-policy|instance-export|instance-import|vrf-import|vrf-export|import|export|keep-import|inter-area-prefix-import|inter-area-prefix-export|network-summary-export|network-summary-import|bootstrap-import|bootstrap-export|filter|prefix-list|proposal|address-set|scheduler|rib-groups|security-zone|term|application|application-set|vlans|gateway|user|policer)[ ])(([-\\w_<>:\\./])+)([;]|$|\\b)",
+      "match": "(?<=\\slogical-systems|\\sdynamic-profiles|\\sjsrc-partition|\\spartition|\\saccess-profile|\\sdscp|\\sdscp-ipv6|\\sexp|\\sieee-802\\.1|\\sieee-802\\.1ad|\\sinet-precedence|\\sscheduler-map|\\sscheduler-maps|\\sinput-traffic-control-profile-remaining|\\sinput-traffic-control-profile|\\straffic-control-profiles|\\soutput-traffic-control-profile-remaining|\\soutput-traffic-control-profile|\\soutput-forwarding-class-map|\\sscheduler-map-chassis|\\sfragmentation-maps|\\ssource-prefix-list|\\sbridge-domains|\\sgroup|\\smime-pattern|\\surl-pattern|\\slabel-switched-path|\\sadmin-groups|\\scustom-url-category|\\sprofile|\\surl-whitelist|\\surl-blacklist|\\sca-profile|\\sidp-policy|\\sactive-policy|\\sinterface-set|\\sinterface-range|\\scount|\\sdestination-prefix-list|\\sschedulers|\\sdrop-profiles|\\sforwarding-class|\\sforwarding-class-map|\\simport|\\sexport|\\sinstance|\\sutm-policy|\\sids-option|\\snext-hop-group|\\srouting-instances|\\srule|\\srule-set|\\spool|\\sclass|\\sunit|\\sport-mirror-instance|\\sfrom-zone|\\sto-zone|\\sapply-groups|\\sfile|\\shost-name|\\sdomain-name|\\spath|\\sdomain-search|\\scommunity delete|\\scommunity add|\\scommunity set|\\scommunity|\\strap-group|\\spolicy|\\spolicy-statement|\\simport-policy|\\sinstance-export|\\sinstance-import|\\svrf-import|\\svrf-export|\\simport|\\sexport|\\skeep-import|\\sinter-area-prefix-import|\\sinter-area-prefix-export|\\snetwork-summary-export|\\snetwork-summary-import|\\segress-policy|\\sbootstrap-import|\\sbootstrap-export|\\sfilter|\\sprefix-list|\\sproposal|\\saddress-set|\\sscheduler|\\srib-groups|\\sgroups|\\ssecurity-zone|\\sterm|\\sapplication|\\sapplication-set|\\svlans|\\sgateway|\\suser|\\spolicer|\\slsp|\\scondition)( [-\\w_<>:\\./]+)(?=[;]|\\b)",
       "captures": {
         "1": { "name": "variable.language.junos" }
       }
@@ -155,7 +150,7 @@
     },
     { 
       "comment": "Descriptions should always look like strings, even if no quotations are needed",
-      "match": "(?:\\s(?:description)[ ])((\\w|[-_<>:\\./])+)([;]|$|\\b)",
+      "match": "(?:\\sdescription )([-_\\w<>':\\.\/\\[\\]]+)\\b",
       "captures": {
         "1": { "name": "string.quoted.double.junos" }
       }
