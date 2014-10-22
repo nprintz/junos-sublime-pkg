@@ -15,12 +15,14 @@ To install manually, simply download the lastest release [here](https://github.c
 Name  | Description  
 ------|------------  
 Comment Block or Annotation | For annotations in stanza mode: `/* Some Text */`  
-Line Comment | Anything after a number sign, `#`, on a line  
-Major Sections | Matches major sections of the config and the preceeding keyword (if set mode). For example, `set system host-name` would highlight `set` as a control keyword, and `system` as a major category (entity.name.function.junos)  
-Minor Sections | Same as major sections, just for more of the less common sections of Junos config  
+Control Keywords | Highlights set/stanza mode keywords (`set`, `delete`, `activate`, `protect`, `inactive:`, `edit`, `show`, etc) as keyword.control.junos  
 Interface names | Highlights interface names, and their corresponding unit numbers if in shortened format (ge-0/0/0.12)  
 IPv4 and IPv6 addresses | All IP addresses get highlighted as a number  
+Line Comment | Anything after a number sign, `#`, on a line  
 MAC addresses | All MAC addresses get highlighted as a number  
+Major Sections | Matches major sections of the config. For example, `system`, `interfaces`, `routing-instances`, are all  major categories (entity.name.function.junos)  
+Minor Sections | Same as major sections, just for more of the less common sections of Junos config  
+Policy Actions | Denial Actions (deny, reject, discard) are highlighted as invalid.illegal.junos. Acceptance actions (accept, permit) are highlighted as constant.language.junos.  
 Routing Tables | Routing Table names are captured as a control keyword (inet.0, mytable.inet.2, mpls.0, etc)  
 Strings | Anything between single- or double-quotes ( ' or " ) gets marked as a string. This also includes any word block after the keyword `description`, which may not be quoted  
 Unit numbers | Unit numbers get highlighted as a number  
