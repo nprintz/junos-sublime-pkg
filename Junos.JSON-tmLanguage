@@ -74,7 +74,7 @@
     {
       "comment": "Interface names",
       "name": "support.class.junos",
-      "match": "\\b((((ge|et|so|fe|gr|xe|lt|vt|si|sp)(-\\d+\/\\d+\/\\d+))|(st|lo|me|vme|ae)\\d{1,3}|irb|vlan)(\\.\\d{1,5})?)\\b(?![-_<>])"
+      "match": "\\b((((ge|et|so|fe|gr|xe|lt|vt|si|sp)(-\\d+\/\\d+\/\\d+))|(st|lo|me|vme|ae|reth)\\d{1,3}|irb|vlan)(\\.\\d{1,5})?)\\b(?![-_<>])"
     },
     {
       "comment": "IPv4 addresses, with or without a mask",
